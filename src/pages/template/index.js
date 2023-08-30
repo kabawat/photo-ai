@@ -1,8 +1,12 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { BiPlusMedical } from 'react-icons/bi'
 const Home = () => {
+    const [curImage, setCurImage] = useState('')
+    const handleChange = (pyload) => {
+        setCurImage(pyload)
+    }
     return (
         <div className='center_main py-5 '>
             <h1 className='text-center py-4'>Seclect the avatar to Genrate the image</h1>
@@ -17,16 +21,16 @@ const Home = () => {
                     <Col lg={7} md={12} sm={12} xs={12}>
                         <Row>
                             <Col>
-                                <img src="/assets/assets-02.png" alt="" className='my-3' />
-                                <img src="/assets/assets-06.png" alt="" className='my-3' />
+                                <img src="/assets/assets-02.png" alt="" className='my-3' onClick={() => handleChange('1')} />
+                                <img src="/assets/assets-06.png" alt="" className='my-3' onClick={() => handleChange('2')} />
                             </Col>
                             <Col className='mt-5'>
-                                <img src="/assets/assets-04-Copy.png" alt="" className='my-3' />
-                                <img src="/assets/assets-05.png" alt="" className='my-3' />
+                                <img src="/assets/assets-04-Copy.png" alt="" className='my-3' onClick={() => handleChange('3')} />
+                                <img src="/assets/assets-05.png" alt="" className='my-3' onClick={() => handleChange('4')} />
                             </Col>
                             <Col>
-                                <img src="/assets/assets-09.png" alt="" className='my-3' />
-                                <img src="/assets/assets-03.png" alt="" className='my-3' />
+                                <img src="/assets/assets-09.png" alt="" className='my-3' onClick={() => handleChange('5')} />
+                                <img src="/assets/assets-03.png" alt="" className='my-3' onClick={() => handleChange('6')} />
                             </Col>
                         </Row>
                     </Col>
@@ -40,3 +44,12 @@ const Home = () => {
 }
 
 export default Home
+
+
+// endpoint
+// https://71dc-103-17-110-126.ngrok-free.app/rec
+// {'image': base64 encoded image, choice:1 to 5}
+
+
+// result
+// result={"errorcode":0 to 1, result: image encode base65 }
