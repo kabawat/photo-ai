@@ -16,7 +16,7 @@ const Result = ({ result, setResult }) => {
                 </Row>
                 <div className="d-flex py-5">
                     <button className='btn btn-dark fs-2 start-btn' onClick={() => setResult('')}>Re-generate</button>
-                    <Link href={result} download="Image" className='btn btn-dark fs-2 start-btn' >Download Image</Link>
+                    <a href={result} download="Image" className='btn btn-dark fs-2 start-btn' >Download Image</a>
                 </div>
             </Container>
         </div>
