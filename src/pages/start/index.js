@@ -4,8 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { BsFolderFill } from 'react-icons/bs'
 import { BiPlusMedical } from 'react-icons/bi'
 import axios from 'axios'
-import Capture from '../../components'
-import Result from '../../components/Result'
+import Capture from '@/components'
+import Result from '@/components/Result'
 const Home = () => {
     const [isUpload, setIsUpload] = useState(false)
     const [isLoad, setIsLoad] = useState(false)
