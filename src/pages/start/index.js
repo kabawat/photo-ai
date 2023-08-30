@@ -102,9 +102,6 @@ const Home = () => {
                                             <div className={`genrate my-3 ${select === '5' ? 'selectImg' : ''}`}>
                                                 <img src="/model/5.png" alt="" onClick={() => handleSelect('5')} />
                                             </div>
-                                            {/* <div className={`genrate my-3 ${select === '6' ? 'selectImg' : ''}`}>
-                                                <img src="/model/6.png" alt="" onClick={() => handleSelect('6')} />
-                                            </div> */}
                                         </Col>
                                     </Row>
                                 </Col>

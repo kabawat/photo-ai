@@ -5,9 +5,9 @@ import type { AppProps } from 'next/app'
 export default function App({ Component, pageProps }: AppProps) {
   return <div className='main'>
     <div className="main-container">
-      <div className="logo">
+      {/* <div className="logo">
         <img src='/logo.png' />
-      </div>
+      </div> */}
       <Component {...pageProps} />
     </div>
   </div>
