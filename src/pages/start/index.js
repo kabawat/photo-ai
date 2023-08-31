@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { BsFolderFill } from 'react-icons/bs'
 import { BiPlusMedical } from 'react-icons/bi'
 import axios from 'axios'
+import data from '@/image-data'
 import Capture from '@/components'
 import Result from '@/components/Result'
 const Home = () => {
@@ -42,15 +42,36 @@ const Home = () => {
         setSelect(pyload)
     }
 
+    const handleEnhance = (encodedImage) => {
+        const API_KEY = 'wxn14ele941rnhtc3';
+
+        const formData = new FormData();
+        formData.append('sync', '1');
+        formData.append('image_base64', encodedImage);
+        formData.append('type', 'face');
+
+        axios.post('https://techhk.aoscdn.com/api/tasks/visual/scale', formData, {
+            headers: {
+                'X-API-KEY': API_KEY,
+            },
+        }).then(response => {
+            console.log(response.data);
+            setResult(response?.data?.data?.image)
+            setIsLoad(false)
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+
     const handleGenrate = async () => {
         setIsLoad(true)
         try {
-            const res = await axios.post('https://71dc-103-17-110-126.ngrok-free.app/rec', {
+            axios.post('https://71dc-103-17-110-126.ngrok-free.app/rec', {
                 image: imgFile.split(',')[1],
                 choice: select
+            }).then(res => {
+                handleEnhance(res.data?.result)
             })
-            setResult('data:image/jpeg;base64,' + res.data?.result)
-            setIsLoad(false)
         } catch (error) {
             console.log(error?.message)
             setIsLoad(false)
@@ -61,7 +82,7 @@ const Home = () => {
         !result ? <>
             {
                 isLoad && <div className="isLoad">
-                    <div class="spinner-border text-light" role="status">
+                    <div className="spinner-border text-light" role="status">
                     </div>
                 </div>
             }
@@ -71,40 +92,22 @@ const Home = () => {
                     <div className='center_main py-5 '>
                         <h1 className='text-center py-4'>Seclect the avatar to Genrate the image</h1>
                         <Container className='px-5'>
-                            <Row className='justify-content-center align-items-center'>
-                                <Col lg={3} md={8} sm={12} xs={12}>
-                                    <div className="preview">
-                                        <img src={imgFile} alt="" className='my-3' />
-                                    </div>
-                                </Col>
-                                <Col lg={2} md={4} sm={12} xs={12} className='fontPlus justify-content-center align-items-center d-flex'>
-                                    <BiPlusMedical />
-                                </Col>
-                                <Col lg={7} md={12} sm={12} xs={12}>
-                                    <Row>
-                                        <Col>
-                                            <div className={`genrate my-3 ${select === '1' ? 'selectImg' : ''}`}>
-                                                <img src="/model/1.png" alt="" onClick={() => handleSelect('1')} />
-                                            </div>
-                                            <div className={`genrate my-3 ${select === '2' ? 'selectImg' : ''}`}>
-                                                <img src="/model/2.png" alt="" onClick={() => handleSelect('2')} />
-                                            </div>
+                            <Row className='justify-content-center'>
+
+                                {
+                                    data?.map((arr, ind) => {
+                                        return <Col className={`${ind % 2 === 1 && 'mt-5 pt-5'}`} key={ind}>
+                                            {
+                                                arr?.map((Item, keys) => {
+                                                    return <div key={keys + ind} className={`genrate my-3 ${select === Item?.encode ? 'selectImg' : ''}`}>
+                                                        <img src={Item?.img} alt="" onClick={() => handleSelect(Item?.encode)} />
+                                                    </div>
+                                                })
+                                            }
                                         </Col>
-                                        <Col className='mt-5'>
-                                            <div className={`genrate my-3 ${select === '3' ? 'selectImg' : ''}`}>
-                                                <img src="/model/3.png" alt="" onClick={() => handleSelect('3')} />
-                                            </div>
-                                            <div className={`genrate my-3 ${select === '4' ? 'selectImg' : ''}`}>
-                                                <img src="/model/4.png" alt="" onClick={() => handleSelect('4')} />
-                                            </div>
-                                        </Col>
-                                        <Col>
-                                            <div className={`genrate my-3 ${select === '5' ? 'selectImg' : ''}`}>
-                                                <img src="/model/5.png" alt="" onClick={() => handleSelect('5')} />
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Col>
+                                    })
+                                }
+
                             </Row>
                             <div className="d-flex py-5">
                                 <button className='btn btn-dark fs-2 start-btn' onClick={handleGenrate}>Genrate Image</button>
@@ -112,10 +115,10 @@ const Home = () => {
                         </Container>
                     </div>
                 </> : <>
-                    <div className='center_main py-5 '>
-                        <h1 className='text-center py-4'>Seclect the avatar to Genrate the image</h1>
+                    <div className='center_main'>
+                        <h1 className='text-center py-1'>Seclect the avatar to Genrate the image</h1>
                         <Container className='px-5'>
-                            <Row>
+                            <Row className='justify-content-center'>
                                 <Col lg={7} className='my-4'>
                                     <div className="card p-4">
                                         <div className="imgDemo">
@@ -123,7 +126,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col className='my-4'>
+                                {/* <Col className='my-4'>
                                     <div className="card p-4 drop">
                                         <h2 className='text-center'>Uplaod your photo</h2>
                                         <p className="text-center">Files uplaod JPG, PNG & HEIC</p>
@@ -139,7 +142,7 @@ const Home = () => {
                                     <div className="d-flex justify-content-center py-3">
                                         {files && <button className='btn btn-dark fs-2 upload-btn' onClick={uploadFile}>Upload</button>}
                                     </div>
-                                </Col>
+                                </Col> */}
                             </Row>
                             <div className="d-flex py-5">
                                 <button className='btn btn-dark fs-2 start-btn' onClick={handleStart} >Start Now</button>
