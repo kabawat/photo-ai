@@ -15,15 +15,15 @@ const DeviceInfo = () => {
         if (deviceInfo?.os?.name === 'Windows') {
             setIsLoad(true)
         } else {
-            false
+            setIsLoad(false)
         }
     }, [deviceInfo]);
     return (
 
         isLoad ? <>
-            welcome to this device
+            welcome to event
         </> : <>
-            not allowed
+            {deviceInfo?.os?.name}
         </>
 
     );
