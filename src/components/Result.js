@@ -15,34 +15,6 @@ const Result = ({ result, setResult }) => {
         }, 5000)
     }
 
-    // const handleRedirect = () => {
-    //     const base64Image = result;
-
-    //     // Detect the image format (MIME type)
-    //     const format = imageType(Buffer.from(base64Image, 'base64'));
-
-    //     if (format) {
-    //         const blob = new Blob([base64Image], { type: format.mime });
-    //         const url = window.URL.createObjectURL(blob);
-    //         const a = document.createElement('a');
-    //         a.href = url;
-    //         a.download = `${small_id}.${format.ext}`; // Specify the file extension based on detected format
-    //         const clickEvent = new MouseEvent('click', {
-    //             view: window,
-    //             bubbles: true,
-    //             cancelable: true,
-    //         });
-    //         a.dispatchEvent(clickEvent);
-    //         window.URL.revokeObjectURL(url);
-    //         setTimeout(() => {
-    //             router.push(`result/${small_id}`);
-    //         }, 1000);
-    //     } else {
-    //         // Unable to detect image format
-    //         console.error('Unable to detect image format.');
-    //     }
-    // };
-
     return (
         <div className='center_main py-5 '>
             <h1 className='text-center'>Here is Your Photograph</h1>
