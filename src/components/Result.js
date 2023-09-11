@@ -12,7 +12,7 @@ const Result = ({ result, setResult }) => {
     const handleRedirect = () => {
         setTimeout(() => {
             router.push(`result/${small_id}`);
-        }, 10000)
+        }, 5000)
     }
 
     // const handleRedirect = () => {
