@@ -1,10 +1,16 @@
-// "use client"
-import { isMobile } from 'react-device-detect';
-const Device = () => {
-    if (isMobile) {
-        return <div> This content is available only on mobile</div>
-    } else {
-        return <div> content </div>
-    }
-}
-export default Device
+import React from 'react';
+import { isTablet, isDesktop } from 'react-device-detect';
+
+const DeviceInfo = () => {
+    return (
+        <div>
+            {isTablet || isDesktop ? (
+                <p>Hello PC</p>
+            ) : (
+                <p>invalid Device</p>
+            )}
+        </div>
+    );
+};
+
+export default DeviceInfo;
