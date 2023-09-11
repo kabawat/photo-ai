@@ -4,30 +4,28 @@ import UAParser from 'ua-parser-js';
 
 const DeviceInfo = () => {
     const [deviceInfo, setDeviceInfo] = useState(null);
-
+    const [isLoad, setIsLoad] = useState(false)
     useEffect(() => {
         const parser = new UAParser();
         const result = parser.getResult();
         setDeviceInfo(result);
     }, []);
 
+    useEffect(() => {
+        if (deviceInfo?.os?.name === 'Windows') {
+            setIsLoad(true)
+        } else {
+            false
+        }
+    }, [deviceInfo]);
     return (
-        <div>
-            {deviceInfo ? (
-                <div>
-                    <h2>Device Information</h2>
-                    <ul>
-                        <li>Browser: {deviceInfo.browser.name}</li>
-                        <li>Browser Version: {deviceInfo.browser.version}</li>
-                        <li>OS: {deviceInfo.os.name}</li>
-                        <li>OS Version: {deviceInfo.os.version}</li>
-                        <li>Device: {deviceInfo.device.model}</li>
-                    </ul>
-                </div>
-            ) : (
-                <p>Loading device information...</p>
-            )}
-        </div>
+
+        isLoad ? <>
+            welcome to this device
+        </> : <>
+            not allowed
+        </>
+
     );
 };
 
