@@ -58,7 +58,7 @@ const Result = ({ result, setResult }) => {
                             </div>
                             <div>
                                 {/* <button onClick={handleRedirect} className='btn wt-border btn-warning start-btn'>download</button> */}
-                                <a href={result} onClick={handleRedirect} target="_blank" rel="noopener noreferrer" download={`tk-${small_id}_m`} className='btn wt-border btn-warning start-btn'>Save</a>
+                                <a href={result} onClick={handleRedirect} target="_blank" rel="noopener noreferrer" download={`${small_id}`} className='btn wt-border btn-warning start-btn'>Save</a>
                             </div>
                         </div>
                     </Col>
