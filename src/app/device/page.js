@@ -2,15 +2,13 @@ import React from 'react';
 import { isTablet, isDesktop } from 'react-device-detect';
 
 const DeviceInfo = () => {
-    return (
-        <div>
-            {isTablet || isDesktop ? (
-                <p>Hello PC</p>
-            ) : (
-                <p>invalid Device</p>
-            )}
-        </div>
-    );
+    if (isDesktop) {
+        return <p>isDesktop</p>
+    } else if (isTablet) {
+        return <p>isTablet Device</p>
+    } else {
+        return <p>invalid Device</p>
+    }
 };
 
 export default DeviceInfo;
