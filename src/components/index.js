@@ -25,8 +25,8 @@ const Capture = ({ setImgFile }) => {
                 {cameraOn ? <Webcam ref={webcamRef} /> : screenshot ? <img src={screenshot} /> : ''}
             </div>
             <div className="d-flex pt-3">
-                <button className='btn btn-dark fs-2 start-btn' onClick={handleScreenshot}>Capture</button>
-                <button className='btn btn-dark fs-2 start-btn' onClick={handleCameraToggle}>Retake</button>
+                <button className='btn btn-warning start-btn' onClick={handleScreenshot}>Capture</button>
+                <button className='btn btn-warning start-btn' onClick={handleCameraToggle}>Retake</button>
             </div>
         </div>
     )
