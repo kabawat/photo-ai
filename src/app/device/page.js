@@ -21,7 +21,7 @@ const DeviceInfo = () => {
     return (
 
         isLoad ? <>
-            welcome to event
+            welcome to event {deviceInfo?.os?.name}
         </> : <>
             {deviceInfo?.os?.name}
         </>
