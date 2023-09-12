@@ -40,10 +40,10 @@ const Login = () => {
             const expirationDate = new Date();
             expirationDate.setTime(expirationDate.getTime() + (60 * 60 * 1000));
             setCookies('auth', token, { expires: expirationDate })
+            router.push('/start')
             setTimeout(() => {
-                router.push('/start')
                 setIsLoad(false)
-            }, 2000)
+            }, 1000)
         } catch (error) {
             console.log(error)
             setIsLoad(false)
