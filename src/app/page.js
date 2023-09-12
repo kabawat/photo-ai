@@ -1,38 +1,9 @@
 "use client"
-// import axios from 'axios'
 import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
-// import { useCookies } from 'react-cookie'
 
 const Page = () => {
-  // const [cookie] = useCookies(['auth'])
-  // const router = useRouter();
-  // useEffect(() => {
-  //   const getVerify = async () => {
-  //     console.log('here')
-  //     try {
-  //       const res = await axios.get('http://localhost:2917/verify', {
-  //         headers: {
-  //           auth: cookie?.auth
-  //         }
-  //       })
-  //       console.log(res)
-
-  //     } catch (error) {
-  //       router.push(`login`);
-  //       console.log(error)
-  //     }
-  //   }
-  //   if (cookie?.auth) {
-  //     getVerify()
-  //     console.log('here')
-  //   } else {
-  //     console.log('error')
-  //     router.push(`login`);
-  //   }
-  // }, [])
   const data = [
     {
       id: 1,
