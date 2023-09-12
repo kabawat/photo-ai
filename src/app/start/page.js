@@ -14,7 +14,7 @@ const Home = () => {
     const [files, setFiles] = useState()
     const [select, setSelect] = useState()
     const [result, setResult] = useState('')
-    const [cookies] = useCookies()
+    const [cookies] = useCookies(['auth'])
     const router = useRouter()
     const domain = 'https://photo-ai-auth.vercel.app'
     useEffect(() => {

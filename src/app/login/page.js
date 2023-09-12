@@ -10,7 +10,7 @@ const domain = 'https://photo-ai-auth.vercel.app'
 const Login = () => {
     const router = useRouter()
     const [isLoader, setIsLoad] = useState(false)
-    const [cookies, setCookies] = useCookies()
+    const [cookies, setCookies] = useCookies(['auth'])
     useEffect(() => {
         if (cookies?.auth) {
             router.push('/')
