@@ -55,33 +55,33 @@ const Page = () => {
 
   return (
     <div className="main">
-      <Container>
-        <Row className='py-5'>
-          <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={12}>
-            <img src="/assets/logo.png" alt="" />
-          </Col>
-          <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={12}>
-            <img src="/assets/logo-01.png" alt="" />
-          </Col>
-        </Row>
 
-        <Row>
-          {
-            data?.map((item, keys) => {
-              return <Col xxl={3} xl={3} lg={3} md={3} sm={6} xs={12} key={keys} className='py-4'>
-                <Card>
-                  <img src={item?.img} alt="" />
-                </Card>
-              </Col>
-            })
-          }
-        </Row>
-        <div className="d-flex justify-content-center py-4">
-          <Link href='/start' className='btn btn-success start-btn'>Start Now</Link>
-        </div>
-      </Container >
       {
-        isLoad ? <Loader /> : ''
+        isLoad ? <Loader /> : <Container>
+          <Row className='py-5'>
+            <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={12}>
+              <img src="/assets/logo.png" alt="" />
+            </Col>
+            <Col xxl={6} xl={6} lg={12} md={12} sm={12} xs={12}>
+              <img src="/assets/logo-01.png" alt="" />
+            </Col>
+          </Row>
+
+          <Row>
+            {
+              data?.map((item, keys) => {
+                return <Col xxl={3} xl={3} lg={3} md={3} sm={6} xs={12} key={keys} className='py-4'>
+                  <Card>
+                    <img src={item?.img} alt="" />
+                  </Card>
+                </Col>
+              })
+            }
+          </Row>
+          <div className="d-flex justify-content-center py-4">
+            <Link href='/start' className='btn btn-success start-btn'>Start Now</Link>
+          </div>
+        </Container >
       }
     </div >
   )
