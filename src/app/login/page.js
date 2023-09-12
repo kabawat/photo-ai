@@ -39,11 +39,11 @@ const Login = () => {
             const { token } = res.data
             const expirationDate = new Date();
             expirationDate.setTime(expirationDate.getTime() + (60 * 60 * 1000));
-            setCookies('auth', token, { expires: expirationDate })
+            setCookies('auth', token, { maxAge: expirationDate })
             router.push('/start')
-            setTimeout(() => {
-                setIsLoad(false)
-            }, 1000)
+            // setTimeout(() => {
+            //     setIsLoad(false)
+            // }, 1000)
         } catch (error) {
             console.log(error)
             setIsLoad(false)
