@@ -1,17 +1,46 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 import data from '@/image-data'
 import Capture from '@/components'
 import Result from '@/components/Result'
+import { useCookies } from 'react-cookie'
+import { useRouter } from 'next/navigation'
 const Home = () => {
     const [isUpload, setIsUpload] = useState(false)
-    const [isLoad, setIsLoad] = useState(false)
+    const [isLoad, setIsLoad] = useState(true)
     const [imgFile, setImgFile] = useState('')
     const [files, setFiles] = useState()
     const [select, setSelect] = useState()
     const [result, setResult] = useState('')
+    const [cookies] = useCookies()
+    const router = useRouter()
+    const domain = 'https://photo-ai-auth.vercel.app'
+    useEffect(() => {
+        const getVerify = async () => {
+            try {
+                const res = await axios.get(`${domain}/verify`, {
+                    headers: {
+                        auth: cookies?.auth
+                    }
+                })
+            } catch (error) {
+                router.push(`/login`);
+                console.log(error)
+            }
+        }
+        console.log(cookies?.auth)
+        setTimeout(() => {
+            if (!cookies?.auth) {
+                router.push('/login')
+            } else {
+                getVerify()
+                setIsLoad(false)
+            }
+        }, 1000)
+    }, [cookies])
+
     // select image from computer 
     const changeFile = event => {
         const file = event.target.files[0]
@@ -50,8 +79,8 @@ const Home = () => {
         setIsLoad(true)
         try {
             // console.log(imgFile)
-            axios.post('https://1a53-103-17-110-126.ngrok-free.app/rec', {
-            // axios.post('https://13.40.23.230:5000/rec', {
+            // axios.post('https://1a53-103-17-110-126.ngrok-free.app/rec', {
+            axios.post('https://13.40.23.230:5000/rec', {
                 image: imgFile.split(',')[1],
                 choice: select
             }).then(res => {
