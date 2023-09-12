@@ -1,19 +1,23 @@
 "use client"
+import Loader from '@/components/Loader'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import { useCookies } from 'react-cookie'
 
 const Page = () => {
+  const [isLoad, setIsLoad] = useState(true)
   const [cookies] = useCookies(['auth'])
-  const [isAuth, setIsAuth] = useState(false)
+  const router = useRouter()
   useEffect(() => {
-    if (cookies?.auth) {
-      setIsAuth(true)
+    if (!cookies?.auth) {
+      router.push('/login')
     } else {
-      setIsAuth(false)
+      setIsLoad(false)
     }
   }, [cookies])
+
   const data = [
     {
       id: 1,
@@ -49,8 +53,6 @@ const Page = () => {
     },
   ]
 
-
-
   return (
     <div className="main">
       <Container>
@@ -75,9 +77,12 @@ const Page = () => {
           }
         </Row>
         <div className="d-flex justify-content-center py-4">
-          <Link href={isAuth ? '/start' : '/login'} className='btn btn-success start-btn'>Start Now</Link>
+          <Link href='/start' className='btn btn-success start-btn'>Start Now</Link>
         </div>
       </Container >
+      {
+        isLoad ? <Loader /> : ''
+      }
     </div >
   )
 }

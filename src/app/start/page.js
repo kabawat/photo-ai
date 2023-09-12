@@ -9,11 +9,11 @@ import { useCookies } from 'react-cookie'
 import { useRouter } from 'next/navigation'
 const Home = () => {
     const [isUpload, setIsUpload] = useState(false)
-    const [isLoad, setIsLoad] = useState(true)
     const [imgFile, setImgFile] = useState('')
     const [files, setFiles] = useState()
     const [select, setSelect] = useState()
     const [result, setResult] = useState('')
+    const [isLoad, setIsLoad] = useState(true)
     const [cookies] = useCookies(['auth'])
     const router = useRouter()
     const domain = 'https://photo-ai-auth.vercel.app'
