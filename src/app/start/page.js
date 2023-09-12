@@ -30,7 +30,6 @@ const Home = () => {
                 console.log(error)
             }
         }
-        console.log(cookies?.auth)
         setTimeout(() => {
             if (!cookies?.auth) {
                 router.push('/login')
@@ -59,7 +58,6 @@ const Home = () => {
 
     // select Template 
     const handleStart = () => {
-        console.log(imgFile.split(',')[0])
         if (imgFile) {
             setIsUpload(true)
         }
